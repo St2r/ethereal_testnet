@@ -1,0 +1,10 @@
+[project]
+name = "ethereal-test"
+version = "0.1.0"
+description = "Ethereal testnet volume farming with low-loss strategies"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ethereal-sdk>=0.1.0b15",
+    "psutil>=5.9.0",
+]

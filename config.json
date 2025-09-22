@@ -1,0 +1,97 @@
+{
+    "accounts": [
+        {
+            "account_id": "account_1",
+            "api_key": "your_api_key_1",
+            "api_secret": "your_api_secret_1",
+            "balance": {"USDT": 10000, "ETH": 5},
+            "available_balance": {"USDT": 9000, "ETH": 4},
+            "positions": {},
+            "risk_limit": 0.02,
+            "max_position_size": 1000
+        },
+        {
+            "account_id": "account_2", 
+            "api_key": "your_api_key_2",
+            "api_secret": "your_api_secret_2",
+            "balance": {"USDT": 8000, "BTC": 0.5},
+            "available_balance": {"USDT": 7200, "BTC": 0.4},
+            "positions": {},
+            "risk_limit": 0.02,
+            "max_position_size": 800
+        }
+    ],
+    
+    "strategies": {
+        "self_hedging": {
+            "enabled": true,
+            "hedge_pairs": [
+                {
+                    "ticker": "ETH-USDT",
+                    "buy_account": "account_1",
+                    "sell_account": "account_2"
+                },
+                {
+                    "ticker": "BTC-USDT", 
+                    "buy_account": "account_2",
+                    "sell_account": "account_1"
+                }
+            ],
+            "volume_range": [0.01, 0.1],
+            "price_offset": 0.0001,
+            "execution_interval": 30
+        },
+        
+        "grid_trading": {
+            "enabled": true,
+            "tickers": ["ETH-USDT", "BTC-USDT"],
+            "grid_count": 10,
+            "grid_spacing": 0.005,
+            "base_volume": 0.1
+        },
+        
+        "arbitrage": {
+            "enabled": true,
+            "arbitrage_pairs": [
+                {
+                    "ticker_a": "ETH-USDT",
+                    "ticker_b": "ETH-BTC", 
+                    "exchange_rate": 1.0
+                }
+            ],
+            "min_profit_threshold": 0.002,
+            "max_volume": 1.0
+        },
+        
+        "market_making": {
+            "enabled": false,
+            "tickers": ["ETH-USDT"],
+            "spread_ratio": 0.002,
+            "order_size": 0.1,
+            "max_inventory": 1.0
+        }
+    },
+    
+    "risk_management": {
+        "max_daily_loss": 1000,
+        "max_position_size": 10000,
+        "max_drawdown_limit": 0.10,
+        "max_leverage": 3.0,
+        "position_size_method": "risk_based",
+        "risk_per_trade": 0.02
+    },
+    
+    "monitoring": {
+        "log_file": "trading.log",
+        "alerts": {
+            "high_memory_threshold": 90,
+            "low_success_rate_threshold": 0.8,
+            "slow_execution_threshold": 5.0
+        }
+    },
+    
+    "trading_engine": {
+        "strategy_interval": 10,
+        "market_data_interval": 1
+    }
+}
